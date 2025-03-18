@@ -39,7 +39,7 @@ const preloadModule = getAttemptModuleRequireFn((moduleName, requirePath) => {
 });
 
 const loadJSConfig = getAttemptModuleRequireFn(
-  function onFail(configPath, requirePath, err) {
+  function onFail(configPath, _requirePath, err) {
     if (err) {
       throw err;
     }
@@ -166,7 +166,7 @@ function getAttemptModuleRequireFn(onFail) {
     let requirePath;
     try {
       requirePath = getModuleRequirePath(moduleName);
-    } catch (e) {
+    } catch (_e) {
       return onFail(moduleName);
     }
     try {
