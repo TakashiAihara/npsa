@@ -1,9 +1,22 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
-	"files": { "ignoreUnknown": false, "ignore": [] },
-	"formatter": { "enabled": true, "indentStyle": "tab" },
-	"organizeImports": { "enabled": true },
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"ignore": []
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "space",
+		"indentWidth": 2
+	},
+	"organizeImports": {
+		"enabled": true
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -45,7 +58,9 @@
 				"useIsNan": "error",
 				"useYield": "error"
 			},
-			"security": { "noGlobalEval": "error" },
+			"security": {
+				"noGlobalEval": "error"
+			},
 			"style": {
 				"noArguments": "error",
 				"noCommaOperator": "error",
@@ -53,7 +68,12 @@
 				"noParameterAssign": "off",
 				"noRestrictedGlobals": {
 					"level": "error",
-					"options": { "deniedGlobals": ["event", "fdescribe"] }
+					"options": {
+						"deniedGlobals": [
+							"event",
+							"fdescribe"
+						]
+					}
 				},
 				"noVar": "error",
 				"noYodaExpression": "error",
@@ -102,5 +122,9 @@
 			"**/fixtures/"
 		]
 	},
-	"javascript": { "formatter": { "quoteStyle": "double" } }
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double"
+		}
+	}
 }
