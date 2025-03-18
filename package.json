@@ -2,21 +2,32 @@
   "name": "npsa",
   "version": "1.0.0",
   "description": "All the benefits of npm scripts without the cost of a bloated package.json and limits of json",
-  "main": "dist/index",
-  "scripts": {
-    "start": "nps",
-    "test": "nps test",
-    "localstart": "npm start build && node ./dist/bin/nps.js",
-    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\""
+  "homepage": "https://github.com/TakashiAihara/npsa#readme",
+  "bugs": {
+    "url": "https://github.com/TakashiAihara/npsa/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TakashiAihara/npsa.git"
+  },
+  "license": "MIT",
+  "author": "TakashiAihara",
+  "main": "dist/index",
   "bin": {
     "nps": "./dist/bin/nps.js"
   },
-  "files": [
-    "dist"
-  ],
-  "author": "TakashiAihara",
-  "license": "MIT",
+  "files": ["dist"],
+  "scripts": {
+    "check": "biome check",
+    "check:write": "biome check --write",
+    "localstart": "npm start build && node ./dist/bin/nps.js",
+    "start": "nps",
+    "test": "nps test"
+  },
+  "lint-staged": {
+    "*.js": ["check:write", "git add"],
+    "*.ts": ["check:write", "git add"]
+  },
   "dependencies": {
     "arrify": "^1.0.1",
     "chalk": "^2.0.1",
@@ -54,31 +65,5 @@
     "npm": "DO NOT USE NPM",
     "pnpm": "10.6.3",
     "yarn": "DO NOT USE YARN"
-  },
-  "eslintConfig": {
-    "extends": [
-      "kentcdodds",
-      "kentcdodds/jest",
-      "kentcdodds/prettier"
-    ],
-    "rules": {
-      "max-len": "off",
-      "max-lines": "off",
-      "no-useless-escape": "off"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TakashiAihara/npsa.git"
-  },
-  "bugs": {
-    "url": "https://github.com/TakashiAihara/npsa/issues"
-  },
-  "homepage": "https://github.com/TakashiAihara/npsa#readme"
+  }
 }

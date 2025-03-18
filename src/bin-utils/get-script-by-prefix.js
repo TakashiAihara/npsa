@@ -1,5 +1,5 @@
-import prefixMatches from 'prefix-matches'
-import {keys, isPlainObject, isString, has} from 'lodash'
+import { has, isPlainObject, isString, keys } from "lodash";
+import prefixMatches from "prefix-matches";
 
 /*
   Converts a string or object with a "script" key into an object with
@@ -14,66 +14,66 @@ export function scriptToObject(name, scriptArg) {
     return {
       name,
       script: scriptArg,
-      description: '',
-    }
+      description: "",
+    };
   }
   if (isPlainObject(scriptArg)) {
-    if (has(scriptArg, 'default')) {
-      return scriptToObject(`${name}.default`, scriptArg.default)
+    if (has(scriptArg, "default")) {
+      return scriptToObject(`${name}.default`, scriptArg.default);
     } else {
-      const description = scriptArg.description || ''
-      const script = scriptArg.script
+      const description = scriptArg.description || "";
+      const script = scriptArg.script;
       return {
         name,
         description,
         script,
-      }
+      };
     }
   }
-  return null
+  return null;
 }
 
 function isValidScript(script) {
   if (isString(script)) {
-    return true
+    return true;
   } else if (isPlainObject(script)) {
-    if (has(script, 'default')) {
-      return isValidScript(script.default)
+    if (has(script, "default")) {
+      return isValidScript(script.default);
     }
-    return has(script, 'script')
+    return has(script, "script");
   } else {
-    return false
+    return false;
   }
 }
 
-export default function getScriptByPrefix({scripts}, prefix) {
-  const matches = prefixMatches(prefix, scripts)
+export default function getScriptByPrefix({ scripts }, prefix) {
+  const matches = prefixMatches(prefix, scripts);
   // This array holds all the valid scripts in
   // the order of priority (default scripts have lowest priority)
-  const matchedScriptsSortedByPriority = []
+  const matchedScriptsSortedByPriority = [];
   for (const match of matches) {
-    const matchedKeys = keys(match)
-    const name = matchedKeys[0]
-    const script = match[name]
+    const matchedKeys = keys(match);
+    const name = matchedKeys[0];
+    const script = match[name];
     if (isValidScript(script)) {
-      if (has(script, 'default')) {
+      if (has(script, "default")) {
         // if it's a default script, push to the last of the array
         matchedScriptsSortedByPriority.push({
           name,
           script,
-        })
+        });
       } else {
         // if it's not a default script, push to the first of the array
         matchedScriptsSortedByPriority.unshift({
           name,
           script,
-        })
+        });
       }
     }
   }
   if (matchedScriptsSortedByPriority.length) {
-    const {name, script} = matchedScriptsSortedByPriority[0]
-    return scriptToObject(name, script)
+    const { name, script } = matchedScriptsSortedByPriority[0];
+    return scriptToObject(name, script);
   }
-  return null
+  return null;
 }

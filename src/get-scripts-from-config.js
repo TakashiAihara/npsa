@@ -1,12 +1,12 @@
-import {isPlainObject, isFunction} from 'lodash'
+import { isFunction, isPlainObject } from "lodash";
 
-export default getScriptsFromConfig
+export default getScriptsFromConfig;
 
 function getScriptsFromConfig(scripts, input) {
   if (isPlainObject(scripts)) {
-    return scripts
+    return scripts;
   } else if (isFunction(scripts)) {
-    return scripts(input)
+    return scripts(input);
   }
-  return {}
+  return {};
 }
