@@ -3,10 +3,11 @@ name: CD
 on:
   push:
     tags:
-      - '*' # タグが付いたときのみ実行
+      - '*'
 
 env:
   NODE_VERSION: 22
+  PNPM_VERSION: 10.6.3
 
 jobs:
   publish:
@@ -16,16 +17,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Publish to NPM
-        run: npm publish --access public
+        run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

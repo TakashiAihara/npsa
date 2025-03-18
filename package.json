@@ -1,6 +1,6 @@
 {
-  "name": "nps",
-  "version": "5.10.0",
+  "name": "npsa",
+  "version": "1.0.0",
   "description": "All the benefits of npm scripts without the cost of a bloated package.json and limits of json",
   "main": "dist/index",
   "scripts": {
@@ -15,8 +15,7 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
-  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "author": "TakashiAihara",
   "license": "MIT",
   "dependencies": {
     "arrify": "^1.0.1",
@@ -55,6 +54,13 @@
     "opt-cli": "^1.5.1",
     "prettier-eslint-cli": "^4.1.1"
   },
+  "packageManager": "pnpm@10.6.3",
+  "engines": {
+    "node": ">=22.14.0",
+    "npm": "DO NOT USE NPM",
+    "pnpm": "10.6.3",
+    "yarn": "DO NOT USE YARN"
+  },
   "eslintConfig": {
     "extends": [
       "kentcdodds",
@@ -75,10 +81,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sezna/nps.git"
+    "url": "https://github.com/TakashiAihara/npsa.git"
   },
   "bugs": {
-    "url": "https://github.com/sezna/nps/issues"
+    "url": "https://github.com/TakashiAihara/npsa/issues"
   },
-  "homepage": "https://github.com/sezna/nps#readme"
+  "homepage": "https://github.com/TakashiAihara/npsa#readme"
 }
