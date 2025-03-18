@@ -1,32 +1,32 @@
-import console from 'console'
-import arrify from 'arrify'
-import {oneLineTrim} from 'common-tags'
-import {isPlainObject, includes} from 'lodash'
+import console from "console";
+import arrify from "arrify";
+import { oneLineTrim } from "common-tags";
+import { includes, isPlainObject } from "lodash";
 
 const shouldLog = {
   // fn called         logLevels
-  info: getShouldLogFn('', 'debug', 'info'),
-  warn: getShouldLogFn('', 'debug', 'info', 'warn'),
-  error: getShouldLogFn('', 'debug', 'info', 'warn', 'error'),
-}
+  info: getShouldLogFn("", "debug", "info"),
+  warn: getShouldLogFn("", "debug", "info", "warn"),
+  error: getShouldLogFn("", "debug", "info", "warn", "error"),
+};
 
-export default getLogger
-export {getLogLevel}
+export default getLogger;
+export { getLogLevel };
 
 function getLogger(logLevel) {
   return {
-    error: getLogFn('error'),
-    warn: getLogFn('warn'),
-    info: getLogFn('info'),
-  }
+    error: getLogFn("error"),
+    warn: getLogFn("warn"),
+    info: getLogFn("info"),
+  };
 
   function getLogFn(name) {
     return function logFn(...args) {
       if (shouldLog[name](process.env.LOG_LEVEL || logLevel)) {
-        const message = getMessage(...args)
-        console[name](...message) // eslint-disable-line no-console
+        const message = getMessage(...args);
+        console[name](...message); // eslint-disable-line no-console
       }
-    }
+    };
   }
 }
 
@@ -37,9 +37,9 @@ function getMessage(first, ...rest) {
       getLink(first.ref),
       first.error,
       ...rest,
-    ].filter(i => !!i)
+    ].filter((i) => !!i);
   } else {
-    return [first, ...rest]
+    return [first, ...rest];
   }
 }
 
@@ -48,16 +48,16 @@ function getLink(ref) {
     https://github.com/TakashiAihara/npsa/blob/master
     /other/ERRORS_AND_WARNINGS.md#
     ${ref}
-  `
+  `;
 }
 
 function getShouldLogFn(...acceptableValues) {
-  return function shouldLogWithLevel(logLevel = '') {
-    logLevel = logLevel.toLowerCase()
-    return !logLevel || includes(acceptableValues, logLevel)
-  }
+  return function shouldLogWithLevel(logLevel = "") {
+    logLevel = logLevel.toLowerCase();
+    return !logLevel || includes(acceptableValues, logLevel);
+  };
 }
 
-function getLogLevel({silent, logLevel}) {
-  return silent ? 'disable' : logLevel
+function getLogLevel({ silent, logLevel }) {
+  return silent ? "disable" : logLevel;
 }

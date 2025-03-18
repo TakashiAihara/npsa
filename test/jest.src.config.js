@@ -1,14 +1,14 @@
 module.exports = {
-  rootDir: '../src',
+  rootDir: "../src",
   collectCoverage: true,
-  testEnvironment: 'node',
-  testPathIgnorePatterns: ['/node_modules/', '/fixtures/', '/helpers/'],
+  testEnvironment: "node",
+  testPathIgnorePatterns: ["/node_modules/", "/fixtures/", "/helpers/"],
   coveragePathIgnorePatterns: [
-    '/node_modules/',
-    '/fixtures/',
-    '/helpers/',
+    "/node_modules/",
+    "/fixtures/",
+    "/helpers/",
     // this is tested by the cli tests
-    '/src/bin/nps.js',
+    "/src/bin/nps.js",
   ],
   coverageThreshold: {
     global: {
@@ -18,4 +18,4 @@ module.exports = {
       statements: 100,
     },
   },
-}
+};

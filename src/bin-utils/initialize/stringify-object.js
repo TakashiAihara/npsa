@@ -1,4 +1,4 @@
-import {isPlainObject} from 'lodash'
+import { isPlainObject } from "lodash";
 
 /**
  * Converts given object to its string representation.
@@ -10,28 +10,28 @@ import {isPlainObject} from 'lodash'
  */
 function stringifyObject(object, indent) {
   return Object.keys(object).reduce((string, key, index) => {
-    const script = object[key]
-    let value
+    const script = object[key];
+    let value;
     if (isPlainObject(script)) {
-      value = `{${stringifyObject(script, `${indent}  `)}\n${indent}}`
+      value = `{${stringifyObject(script, `${indent}  `)}\n${indent}}`;
     } else {
-      value = `'${escapeSingleQuote(script)}'`
+      value = `'${escapeSingleQuote(script)}'`;
     }
-    const comma = getComma(isLast(object, index))
-    return `${string}\n${indent}${key}: ${value}${comma}`
-  }, '')
+    const comma = getComma(isLast(object, index));
+    return `${string}\n${indent}${key}: ${value}${comma}`;
+  }, "");
 }
 
 function getComma(condition) {
-  return condition ? '' : ','
+  return condition ? "" : ",";
 }
 
 function isLast(object, index) {
-  return Object.keys(object).length - 1 === index
+  return Object.keys(object).length - 1 === index;
 }
 
 function escapeSingleQuote(string) {
-  return string.replace(/'/g, "\\'")
+  return string.replace(/'/g, "\\'");
 }
 
-export default stringifyObject
+export default stringifyObject;

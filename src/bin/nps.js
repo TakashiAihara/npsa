@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import {merge} from 'lodash'
-import getLogger, {getLogLevel} from '../get-logger'
-import runPackageScript from '../index'
-import parse from '../bin-utils/parser'
+import { merge } from "lodash";
+import parse from "../bin-utils/parser";
+import getLogger, { getLogLevel } from "../get-logger";
+import runPackageScript from "../index";
 
-const FAIL_CODE = 1
-const {argv, psConfig} = parse(process.argv.slice(2)) || {}
+const FAIL_CODE = 1;
+const { argv, psConfig } = parse(process.argv.slice(2)) || {};
 
 if (argv && psConfig) {
   runPackageScript({
@@ -26,9 +26,9 @@ if (argv && psConfig) {
       // make this explicit
       // because sometimes we can't explain
       // everything about life that confuses us...
-      process.exitCode = 0
+      process.exitCode = 0;
     },
-    error => {
+    (error) => {
       const logLevel = getLogLevel(
         merge(
           {
@@ -38,10 +38,10 @@ if (argv && psConfig) {
           },
           psConfig.options,
         ),
-      )
-      const log = getLogger(logLevel)
-      log.error(error)
-      process.exitCode = error.code || FAIL_CODE
+      );
+      const log = getLogger(logLevel);
+      log.error(error);
+      process.exitCode = error.code || FAIL_CODE;
     },
-  )
+  );
 }

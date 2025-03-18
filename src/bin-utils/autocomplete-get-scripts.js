@@ -1,49 +1,49 @@
 import {
-  includes,
-  kebabCase,
   camelCase,
+  includes,
   isPlainObject,
+  kebabCase,
   startsWith,
-} from 'lodash'
+} from "lodash";
 
-const excludedKeys = ['default', 'script', 'description', 'hiddenFromHelp']
+const excludedKeys = ["default", "script", "description", "hiddenFromHelp"];
 
-export default getScripts
+export default getScripts;
 
-function getScripts(objWithScripts, prefix = '') {
-  const [prefixToMatch, ...remainingToMatch] = prefix.split('.')
+function getScripts(objWithScripts, prefix = "") {
+  const [prefixToMatch, ...remainingToMatch] = prefix.split(".");
   return Object.keys(objWithScripts).reduce((acc, key) => {
     /* eslint complexity:0 */
-    const kebabKey = kebabCase(key)
-    const camelKey = camelCase(key)
-    const startsWithKey = startsWith(key, prefixToMatch)
-    const startsWithKebab = startsWith(kebabKey, prefixToMatch)
-    const startsWithCamel = startsWith(camelKey, prefixToMatch)
-    const startMatches = startsWithKey || startsWithKebab || startsWithCamel
+    const kebabKey = kebabCase(key);
+    const camelKey = camelCase(key);
+    const startsWithKey = startsWith(key, prefixToMatch);
+    const startsWithKebab = startsWith(kebabKey, prefixToMatch);
+    const startsWithCamel = startsWith(camelKey, prefixToMatch);
+    const startMatches = startsWithKey || startsWithKebab || startsWithCamel;
     if (!startMatches || includes(excludedKeys, key)) {
-      return acc
+      return acc;
     }
-    const value = objWithScripts[key]
+    const value = objWithScripts[key];
 
     // default to kebab-case
     // eslint-disable-next-line
-    const keyToPush = !isKebab(prefixToMatch) ? camelKey : kebabKey;
+    const keyToPush = isKebab(prefixToMatch) ? kebabKey : camelKey;
 
     if (isPlainObject(value)) {
       if ((value.default || value.script) && !remainingToMatch.length) {
-        acc.push(keyToPush)
+        acc.push(keyToPush);
       }
-      const subscripts = getScripts(value, remainingToMatch.join('.')).map(
-        scriptName => `${keyToPush}.${scriptName}`,
-      )
-      acc = [...acc, ...subscripts]
+      const subscripts = getScripts(value, remainingToMatch.join(".")).map(
+        (scriptName) => `${keyToPush}.${scriptName}`,
+      );
+      acc = [...acc, ...subscripts];
     } else if (!remainingToMatch.length) {
-      acc.push(keyToPush)
+      acc.push(keyToPush);
     }
-    return acc
-  }, [])
+    return acc;
+  }, []);
 }
 
 function isKebab(str) {
-  return includes(str, '-')
+  return includes(str, "-");
 }

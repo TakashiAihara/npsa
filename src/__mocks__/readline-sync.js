@@ -1,8 +1,8 @@
-const mock = {}
+const mock = {};
 
 module.exports = {
   keyInYN: jest.fn(() => {
-    return Boolean(mock.keyInYNReturn)
+    return Boolean(mock.keyInYNReturn);
   }),
   mock,
-}
+};

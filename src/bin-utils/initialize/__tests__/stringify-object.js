@@ -1,13 +1,13 @@
-import stringifyObject from './../stringify-object'
+import stringifyObject from "./../stringify-object";
 
 const objectToStringify = {
-  foo: 'a',
+  foo: "a",
   bar: {
-    baz: 'b',
+    baz: "b",
   },
-}
+};
 
-test('stringify object correctly', () => {
-  const stringObject = stringifyObject(objectToStringify, '    ')
-  expect(stringObject).toMatchSnapshot()
-})
+test("stringify object correctly", () => {
+  const stringObject = stringifyObject(objectToStringify, "    ");
+  expect(stringObject).toMatchSnapshot();
+});

@@ -2,21 +2,32 @@
   "name": "npsa",
   "version": "1.0.0",
   "description": "All the benefits of npm scripts without the cost of a bloated package.json and limits of json",
-  "main": "dist/index",
-  "scripts": {
-    "start": "nps",
-    "test": "nps test",
-    "localstart": "npm start build && node ./dist/bin/nps.js",
-    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\""
+  "homepage": "https://github.com/TakashiAihara/npsa#readme",
+  "bugs": {
+    "url": "https://github.com/TakashiAihara/npsa/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TakashiAihara/npsa.git"
+  },
+  "license": "MIT",
+  "author": "TakashiAihara",
+  "main": "dist/index",
   "bin": {
     "nps": "./dist/bin/nps.js"
   },
-  "files": [
-    "dist"
-  ],
-  "author": "TakashiAihara",
-  "license": "MIT",
+  "files": ["dist"],
+  "scripts": {
+    "check": "biome check",
+    "check:write": "biome check --write",
+    "localstart": "npm start build && node ./dist/bin/nps.js",
+    "start": "nps",
+    "test": "nps test"
+  },
+  "lint-staged": {
+    "*.js": ["check:write", "git add"],
+    "*.ts": ["check:write", "git add"]
+  },
   "dependencies": {
     "arrify": "^1.0.1",
     "chalk": "^2.0.1",
@@ -32,27 +43,20 @@
     "yargs": "14.2.0"
   },
   "devDependencies": {
-    "all-contributors-cli": "^4.3.0",
+    "@biomejs/biome": "1.9.4",
     "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
     "babel-jest": "^22.0.0",
     "babel-plugin-module-resolver": "^3.0.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "cross-env": "^5.0.1",
-    "eslint": "^4.5.0",
-    "eslint-config-kentcdodds": "^12.4.1",
-    "eslint-plugin-babel": "4.1.2",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-jest": "20.0.3",
     "husky": "0.14.3",
     "jest-cli": "^22.0.0",
     "lint-staged": "^7.0.0",
     "nps": "^5.4.0",
     "nps-utils": "^1.2.0",
-    "opt-cli": "^1.5.1",
-    "prettier-eslint-cli": "^4.1.1"
+    "opt-cli": "^1.5.1"
   },
   "packageManager": "pnpm@10.6.3",
   "engines": {
@@ -60,31 +64,5 @@
     "npm": "DO NOT USE NPM",
     "pnpm": "10.6.3",
     "yarn": "DO NOT USE YARN"
-  },
-  "eslintConfig": {
-    "extends": [
-      "kentcdodds",
-      "kentcdodds/jest",
-      "kentcdodds/prettier"
-    ],
-    "rules": {
-      "max-len": "off",
-      "max-lines": "off",
-      "no-useless-escape": "off"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TakashiAihara/npsa.git"
-  },
-  "bugs": {
-    "url": "https://github.com/TakashiAihara/npsa/issues"
-  },
-  "homepage": "https://github.com/TakashiAihara/npsa#readme"
+  }
 }

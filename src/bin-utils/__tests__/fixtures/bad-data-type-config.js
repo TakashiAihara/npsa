@@ -1,1 +1,1 @@
-module.exports = 'cannot be a string'
+module.exports = "cannot be a string";
