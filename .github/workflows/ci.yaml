@@ -9,7 +9,7 @@ env:
   NODE_VERSION: 22
 
 jobs:
-  build:
+  validate-and-test:
     runs-on: ubuntu-latest
 
     steps:
