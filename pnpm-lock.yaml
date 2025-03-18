@@ -51,9 +51,6 @@ importers:
       babel-cli:
         specifier: ^6.24.1
         version: 6.26.0
-      babel-eslint:
-        specifier: ^7.2.3
-        version: 7.2.3
       babel-jest:
         specifier: ^22.0.0
         version: 22.4.4(babel-core@6.26.3)
@@ -352,11 +349,6 @@ packages:
 
   babel-core@6.26.3:
     resolution: {integrity: sha512-6jyFLuDmeidKmUEb3NM+/yawG0M2bDZ9Z1qbZP59cyHLz8kYGKYwpJP0UwUKKUiTRNvxfLesJnTedqczP7cTDA==}
-
-  babel-eslint@7.2.3:
-    resolution: {integrity: sha512-i2yKOhjgwUbUrJ8oJm6QqRzltIoFahGNPZ0HF22lUN4H1DW03JQyJm7WSv+I1LURQWjDNhVqFo04acYa07rhOQ==}
-    engines: {node: '>=4'}
-    deprecated: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
 
   babel-generator@6.26.1:
     resolution: {integrity: sha512-HyfwY6ApZj7BYTcJURpM5tznulaBvyio7/0d4zFOeMPUmfxkCjHocCuoLa2SAGzBI8AREcH3eP3758F672DppA==}
@@ -3206,15 +3198,6 @@ snapshots:
       private: 0.1.8
       slash: 1.0.0
       source-map: 0.5.7
-    transitivePeerDependencies:
-      - supports-color
-
-  babel-eslint@7.2.3:
-    dependencies:
-      babel-code-frame: 6.26.0
-      babel-traverse: 6.26.0
-      babel-types: 6.26.0
-      babylon: 6.18.0
     transitivePeerDependencies:
       - supports-color
 
